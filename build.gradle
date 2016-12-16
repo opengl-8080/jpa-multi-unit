@@ -1,0 +1,32 @@
+apply plugin: 'application'
+apply plugin: 'eclipse'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+compileJava.options.encoding = 'UTF-8'
+
+mainClassName = 'sample.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.hsqldb:hsqldb:2.3.4'
+    compile 'org.eclipse.persistence:org.eclipse.persistence.jpa:2.6.4'
+}
+
+eclipse {
+    project.name = 'jpa-multi-unit'
+    jdt {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+}
+
+eclipseJdt << {
+    File f = file('.settings/org.eclipse.core.resources.prefs')
+    f.write('eclipse.preferences.version=1\n')
+    f.append('encoding/<project>=utf-8')
+}
